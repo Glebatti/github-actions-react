@@ -1,7 +1,7 @@
 name: Print Pull Request Context  # имя
 on:                     #[workflow_dispatch, pull_request] # на какое событие будет реагировать этот файл
     workflow_dispatch: # запускаем вручную через github
-    pull_request: # слияние веток,создание нескольких веток
+    pull_request: # слияние веток в гитхаб
       types: [opened, edited , reopened] # типы (открыть, редактировать, вновь открыть) реагирует pull request
 jobs: # работа
   print: # название задачи
