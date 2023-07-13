@@ -22,7 +22,7 @@ jobs: # работа
         run: npm run test # начать тест
   lint: # проверяем приложение на качество кода
     runs-on: ubuntu-latest # на чем запускаем
-    needs: test # дожидаемся конца test чтобы начать lint
+    #needs: test # дожидаемся конца test чтобы начать lint
     steps: # шаги
       - name: Get repository code # получить код репозитория
         uses: actions/checkout@v3 # использовать готовый workflow
@@ -37,7 +37,7 @@ jobs: # работа
         run: npm run lint # начать тест
   build: # собираем приложение
     runs-on: ubuntu-latest # на чем запускаем
-    needs : lint # дожидаемся конца lint чтобы начать build
+    needs : [lint,test] # дожидаемся конца lint и test чтобы начать build
     steps: # шаги
       - name: Get repository code # получить код репозитория
         uses: actions/checkout@v3 # использовать готовый workflow
