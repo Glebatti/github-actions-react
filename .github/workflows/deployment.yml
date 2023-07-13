@@ -4,31 +4,31 @@ jobs: # работа
   test: #тестируем код
     runs-on: ubuntu-latest # на чем запускаем
     steps: # шаги
-      - name: Get repository code #получить код репозитория
-        uses: actions/checkout@v3 #использовать готовый workflow
-      - name: Install dependecies #имя установить зависимости
-        run: npm ci #установить зависимости
-      - name: Test application #имя протестировать приложение
-        run: npm run test #начать тест
-  lint: #проверяем приложение на качество кода
+      - name: Get repository code # получить код репозитория
+        uses: actions/checkout@v3 # использовать готовый workflow
+      - name: Install dependecies # имя установить зависимости
+        run: npm ci # установить зависимости
+      - name: Test application # имя протестировать приложение
+        run: npm run test # начать тест
+  lint: # проверяем приложение на качество кода
     runs-on: ubuntu-latest # на чем запускаем
-    needs: test #дожидаемся конца test чтобы начать lint
+    needs: test # дожидаемся конца test чтобы начать lint
     steps: # шаги
-      - name: Get repository code #получить код репозитория
-        uses: actions/checkout@v3 #использовать готовый workflow
-      - name: Install dependecies #имя установить зависимости
-        run: npm ci #установить зависимости
-      - name: Lint application #имя проверять приложение на качество кода
-        run: npm run lint #начать тест
-  build: #собираем приложение
+      - name: Get repository code # получить код репозитория
+        uses: actions/checkout@v3 # использовать готовый workflow
+      - name: Install dependencies # имя установить зависимости
+        run: npm ci # установить зависимости
+      - name: Lint application # имя проверять приложение на качество кода
+        run: npm run lint # начать тест
+  build: # собираем приложение
     runs-on: ubuntu-latest # на чем запускаем
-    needs : lint #дожидаемся конца lint чтобы начать build
+    needs : lint # дожидаемся конца lint чтобы начать build
     steps: # шаги
-      - name: Get repository code #получить код репозитория
-        uses: actions/checkout@v3 #использовать готовый workflow
-      - name: Install dependecies #имя установить зависимости
-        run: npm ci #установить зависимости
-      - name: Build application #имя собираем приложение
-        run: npm run build #собираем приложение
-      - name: Deploy #развернуть
+      - name: Get repository code # получить код репозитория
+        uses: actions/checkout@v3 # использовать готовый workflow
+      - name: Install dependecies # имя установить зависимости
+        run: npm ci # установить зависимости
+      - name: Build application # имя собираем приложение
+        run: npm run build # собираем приложение
+      - name: Deploy # развернуть
         run: echo Deploying ...

@@ -1,0 +1,8 @@
+name: Print Pull Request Context  # имя
+on: workflow_dispatch # на какое событие будет реагировать этот файл
+jobs: # работа
+  print: # название задачи
+    runs-on: ubuntu-latest # на чем запускаем
+    steps: # шаги
+      - name: Print context # имя контекст печати
+        run: echo "${{ github }}" # добавляет объект контекста,который позволяет им пользоваться внутри workflow
