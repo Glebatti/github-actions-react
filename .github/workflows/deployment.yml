@@ -36,11 +36,19 @@ jobs: # работа
       - name: Lint application # имя проверять приложение на качество кода
         run: npm run lint # начать тест
   build: # собираем приложение
-    runs-on: ubuntu-latest # на чем запускаем
     needs : [lint,test] # дожидаемся конца lint и test чтобы начать build
+    strategy: # стратегия нужна для того ,чтобы протестировать проект на разных опирационных системах
+      matrix: # матрица
+        node-version: [14,16] # тестируем билд проекта на 14 и 16 node
+        os : [ubuntu-latest, windows-latest] # опирационные системы
+    runs-on: ${{ matrix.os }} # на чем запускаем (прогоняем и ubuntu и windows)
     steps: # шаги
       - name: Get repository code # получить код репозитория
         uses: actions/checkout@v3 # использовать готовый workflow
+      - name: Install Node JS # имя скачиваем NodeJS
+        uses: actions/setup-node@v3 # использовать готовый workflow
+        with:
+          node-version: ${{ matrix.node-version }} # используем и 14 и 16 версию node
       - name: Cache deps # имя кеш зависимости
         uses: actions/cache@v3 #использовать готовый workflow кеш
         with:
