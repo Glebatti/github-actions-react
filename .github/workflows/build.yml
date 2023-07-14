@@ -1,8 +1,8 @@
-name: Build #имя
+name: Build & Deploy #имя собрать и развернуть проект
 on: [push, workflow_dispatch] # на какое событие будет реагировать этот файл
 jobs: # работа
   build: # собираем приложение
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # на чем запускаем
     steps:
       - name: Get code  # имя получить код
         uses: actions/checkout@v3 # использовать готовый workflow
@@ -15,3 +15,11 @@ jobs: # работа
         with:
           path: build # путь
           name: build-files # имя создание файла
+  deploy:
+    needs: build # дожидаемся конца build чтобы начать deploy
+    runs-on: ubuntu-latest # на чем запускаем
+    steps: # шаги
+      - name: Get build project # имя получить собраный проект
+        uses: actions/download-artifact@v3 # использовать готовый workflow
+        with: # ключ
+          name: build-files # название артифакта собраный проект
