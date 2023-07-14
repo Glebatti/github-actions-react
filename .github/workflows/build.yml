@@ -1,0 +1,17 @@
+name: Build #имя
+on: [push, workflow_dispatch] # на какое событие будет реагировать этот файл
+jobs: # работа
+  build: # собираем приложение
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code  # имя получить код
+        uses: actions/checkout@v3 # использовать готовый workflow
+      - name: Install deps # имя установить зависимости
+        run: npm ci #установить зависимости
+      - name: Build project # имя собрать проект
+        run: npm run build # собрать проект
+      - name: Upload Artifact # имя загрузить артефакт
+        uses: actions/upload-artifact@v3 # использовать готовый workflow
+        with:
+          path: build # путь
+          name: build-files # имя создание файла
